@@ -11,7 +11,7 @@ export function App() {
   return (
     <HelmetProvider>
       <ThemeProvider defaultTheme="dark" storageKey="pizzashop-theme">
-        <Helmet titleTemplate="%s | pizza.shop" />{' '}
+        <Helmet titleTemplate="%s | fatepi" />{' '}
         {/* cada página tem um título %s */}
         <Toaster richColors />
         <RouterProvider router={router} />

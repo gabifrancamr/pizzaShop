@@ -1,24 +1,30 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import * as z from 'zod'
 
+import { PasswordInput } from '@/components/password-input'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 const signUpForm = z.object({
-  restaurantName: z.string(),
   managerName: z.string(),
   phone: z.string(),
   email: z.string().email(),
+  password: z.string(),
+  newPassword: z.string(),
 })
 
 type SignUpForm = z.infer<typeof signUpForm>
 
 export function SignUp() {
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+
   const navigate = useNavigate()
   const {
     register,
@@ -30,14 +36,18 @@ export function SignUp() {
 
   async function handleSignUp(data: SignUpForm) {
     try {
-      console.log(data)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
-      toast.success('Restaurante cadastrado com sucesso', {
-        action: {
-          label: 'Login',
-          onClick: () => navigate('/sign-in'),
-        },
-      })
+      if (password === newPassword) {
+        console.log(data)
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        toast.success('Restaurante cadastrado com sucesso', {
+          action: {
+            label: 'Login',
+            onClick: () => navigate('/sign-in'),
+          },
+        })
+      } else {
+        toast.error('Não foi possível confirmar a senha.')
+      }
     } catch {
       toast.error('Erro ao cadastrar restaurante.')
     }
@@ -61,15 +71,6 @@ export function SignUp() {
           </div>
           <form onSubmit={handleSubmit(handleSignUp)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="restaurantName">Nome do estabelecimento</Label>
-              <Input
-                id="restaurantName"
-                type="text"
-                {...register('restaurantName')}
-              />
-            </div>
-
-            <div className="space-y-2">
               <Label htmlFor="managerName">Seu nome</Label>
               <Input
                 id="managerName"
@@ -87,6 +88,29 @@ export function SignUp() {
               <Label htmlFor="phone">Seu celular</Label>
               <Input id="phone" type="tel" {...register('phone')} />
             </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="password">Sua senha</Label>
+              <PasswordInput
+                {...register('password')}
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="password"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="newPassword">Confirmar senha</Label>
+              <PasswordInput
+                {...register('newPassword')}
+                id="newPassword"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                autoComplete="new-password"
+              />
+            </div>
+
             <Button disabled={isSubmitting} className="w-full" type="submit">
               Finalizar cadastro
             </Button>

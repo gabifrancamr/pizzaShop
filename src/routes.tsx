@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import { ConfirmEmail } from './components/confirm-email'
+import { NewPassword } from './components/new-password'
 import { AppLayout } from './pages/_layouts/app'
 import { AuthLayout } from './pages/_layouts/auth'
 import { Dashboard } from './pages/app/dashboard'
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: '/sign-up',
         element: <SignUp />,
+      },
+      {
+        path: '/change-password',
+        element: <ConfirmEmail />,
+      },
+      {
+        path: '/change-password/new-password',
+        element: <NewPassword />,
       },
     ],
   },

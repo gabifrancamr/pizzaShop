@@ -9,4 +9,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 5 - Helmet para padronizar títulos (pnpm i react-helmet-async)
 6 - biblioteca react hook form nos formulários (pnpm i react-hook-form zod @hookform/resolvers)
 7 - biblioteca sonner para notificação (Toaster e toast) (pnpm install sonner)
-8 -
+8 - separator: pnpm dlx shadcn-ui@latest add separator

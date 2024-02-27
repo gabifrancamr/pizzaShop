@@ -17,16 +17,20 @@ const passwordInputSchema = z.object({
 type InputPassword = z.infer<typeof passwordInputSchema>
 
 export function NewPassword() {
-  const [newPassword, setNewPassword] = useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  // const [newPassword, setNewPassword] = useState('')
+  // const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
+    watch,
   } = useForm<InputPassword>({
     resolver: zodResolver(passwordInputSchema),
   })
+
+  const newPassword = watch('newPassword')
+  const passwordConfirmation = watch('passwordConfirmation')
 
   const navigate = useNavigate()
 
@@ -57,7 +61,7 @@ export function NewPassword() {
             {...register('newPassword')}
             id="password"
             value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            // onChange={(e) => setNewPassword(e.target.value)}
             autoComplete="new-password"
           />
         </div>
@@ -67,7 +71,7 @@ export function NewPassword() {
             {...register('passwordConfirmation')}
             id="password_confirmation"
             value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            // onChange={(e) => setPasswordConfirmation(e.target.value)}
             autoComplete="new-password"
           />
         </div>

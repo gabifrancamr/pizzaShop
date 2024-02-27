@@ -1,0 +1,12 @@
+1 - Primeira instalação: 
+install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcss autoprefixer), npx tailwindcss init -p, pnpm i -D @types/node  
+2 - Biblioteca de componentes: pnpm dlx shadcn-ui@latest init
+- com essa biblioteca instalei componente de botão: pnpm dlx shadcn-ui@latest add button
+- input e label: pnpm dlx shadcn-ui@latest add input label
+- escolhi tema pelo shadcn/ui também (escolher tema com base nos componentes do shadcn/ui)
+3 - configuração do eslint: pnpm i eslint @rocketseat/eslint-config -D, configuração do prettier: pnpm i -D  prettier-plugin-tailwindcss, eslin: pnpm i -D eslint-plugin-simple-import-sort
+4 - instalando react router dom: pnpm i react-router-dom localforage match-sorter sort-by 
+5 - Helmet para padronizar títulos (pnpm i react-helmet-async)
+6 - biblioteca react hook form nos formulários (pnpm i react-hook-form zod @hookform/resolvers)
+7 - biblioteca sonner para notificação (Toaster e toast) (pnpm install sonner)
+8 -

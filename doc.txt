@@ -14,3 +14,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 10 - dropdown menu pnpm dlx shadcn-ui@latest add dropdown-menu
 11 - tabela: pnpm dlx shadcn-ui@latest add table
 12 - select - pnpm dlx shadcn-ui@latest add select
+13 - dialog - pnpm dlx shadcn-ui@latest add dialog

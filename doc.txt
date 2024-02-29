@@ -13,3 +13,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 9 - dark mode: https://ui.shadcn.com/docs/dark-mode/vite
 10 - dropdown menu pnpm dlx shadcn-ui@latest add dropdown-menu
 11 - tabela: pnpm dlx shadcn-ui@latest add table
+12 - select - pnpm dlx shadcn-ui@latest add select

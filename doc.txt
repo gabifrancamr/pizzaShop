@@ -1,4 +1,5 @@
 1 - Primeira instalação: 
+https://ui.shadcn.com/docs/installation/vite
 install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcss autoprefixer), npx tailwindcss init -p, pnpm i -D @types/node  
 2 - Biblioteca de componentes: pnpm dlx shadcn-ui@latest init
 - com essa biblioteca instalei componente de botão: pnpm dlx shadcn-ui@latest add button

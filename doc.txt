@@ -16,3 +16,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 12 - select - pnpm dlx shadcn-ui@latest add select
 13 - dialog - pnpm dlx shadcn-ui@latest add dialog
 14 - card - pnpm dlx shadcn-ui@latest add card  
+15 - biblioteca de gráfico - pnpm install recharts

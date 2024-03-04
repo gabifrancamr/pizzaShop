@@ -38,7 +38,7 @@ export function AccountMenu() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex flex-col">
-          <span>Gabi F</span>
+          <span>{profile?.name}</span>
           <span className="font-normal, text-xs text-muted-foreground">
             gabi@rocketseat.com
           </span>

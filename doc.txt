@@ -20,3 +20,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 15 - biblioteca de gráfico - pnpm install recharts
 16 - axos - pnpm i axios
 17 - pnpm i @tanstack/react-query
+18 - carregando pnpm dlx shadcn-ui@latest add skeleton

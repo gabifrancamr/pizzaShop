@@ -6,5 +6,8 @@ interface UpdateProfileBody {
 }
 
 export async function UpdateProfile({ name, description }: UpdateProfileBody) {
-  await api.put('/profile', { name, description })
+  await new Promise((_, reject) => {
+    setTimeout(reject, 3000)
+  })
+  // await api.put('/profile', { name, description })
 }

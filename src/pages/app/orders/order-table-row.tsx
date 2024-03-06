@@ -1,8 +1,11 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ArrowRight, Search, X } from 'lucide-react'
 import { useState } from 'react'
 
+import { cancelOrder } from '@/api/cancel-order'
+import { GetOrdersResponse } from '@/api/get-orders'
 import { OrderStatus } from '@/components/order-status'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
@@ -22,6 +25,35 @@ export interface OrderTableRowProps {
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+
+  const queryClient = useQueryClient()
+
+  const { mutateAsync: cancelOrderFn } = useMutation({
+    mutationFn: cancelOrder,
+    async onSuccess(_, { orderId }) {
+      const ordersListCache = queryClient.getQueriesData<GetOrdersResponse>({
+        queryKey: ['orders'],
+      })
+
+      ordersListCache.forEach(([cacheKey, cacheData]) => {
+        // percorre todas as listas de pedidos carregadas, seja as que estão no cache, sejam as listas filtradas, paginadas.. e quando encontrar o pedido com o mesmo id do pedido que eu acabei de cancelar ele vai mudar o status para cancelado
+        if (!cacheData) {
+          return
+        }
+
+        queryClient.setQueryData<GetOrdersResponse>(cacheKey, {
+          ...cacheData,
+          orders: cacheData.orders.map((order) => {
+            if (order.orderId === orderId) {
+              return { ...order, status: 'canceled' }
+            }
+
+            return order
+          }),
+        })
+      })
+    },
+  })
 
   return (
     <TableRow>
@@ -55,14 +87,19 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
           currency: 'BRL',
         })}
       </TableCell>
-      <TableCell className="">
+      <TableCell>
         <Button variant="outline" size="xs">
           <ArrowRight className="mr-2 h-3 w-3" />
           Aprovar
         </Button>
       </TableCell>
-      <TableCell className="">
-        <Button variant="ghost" size="xs">
+      <TableCell>
+        <Button
+          disabled={!['pending', 'processing'].includes(order.status)} // se o status não for pendente ou processando o botão estará desabilitado. Só da pra cancelar o pedido quando ele estiver pendente ou processando
+          onClick={() => cancelOrderFn({ orderId: order.orderId })}
+          variant="ghost"
+          size="xs"
+        >
           <X className="mr-2 h-3 w-3" />
           Cancelar
         </Button>

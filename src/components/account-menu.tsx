@@ -38,7 +38,7 @@ export function AccountMenu() {
   const { mutateAsync: signOutFn, isPending: isSigningOut } = useMutation({
     mutationFn: signOut,
     onSuccess: () => {
-      navigate('sign-in', { replace: true })
+      navigate('sign-in', { replace: true }) // impede que o usuário clique no botão de voltar e logue de novo
     },
   })
 

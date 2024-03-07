@@ -32,12 +32,13 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
   const queryClient = useQueryClient()
 
   function updateOrderStatusOnCache(orderId: string, status: OrderStatus) {
+    // essa função percorre todas as listas de pedidos carregados seja as que estão no cache, sejam as listas filtradas, paginadas.. e quando encontrar o pedido com o mesmo id do pedido que eu acabei de cancelar/aprovar/em entrega/entregue ele vai mudar o status de acordo com esse valor
     const ordersListCache = queryClient.getQueriesData<GetOrdersResponse>({
+      // buscando toda lista de pedidos que possuem queryKey começando com 'orders'
       queryKey: ['orders'],
     })
 
     ordersListCache.forEach(([cacheKey, cacheData]) => {
-      // percorre todas as listas de pedidos carregadas, seja as que estão no cache, sejam as listas filtradas, paginadas.. e quando encontrar o pedido com o mesmo id do pedido que eu acabei de cancelar ele vai mudar o status para cancelado
       if (!cacheData) {
         return
       }

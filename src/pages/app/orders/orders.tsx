@@ -23,7 +23,7 @@ export function Orders() {
   const customerName = searchParams.get('customerName')
   const status = searchParams.get('status')
 
-  const pageIndex = z.coerce
+  const pageIndex = z.coerce // coerce Serve pra converter valores
     .number()
     .transform((page) => page - 1)
     .parse(searchParams.get('page') ?? '1')

@@ -22,3 +22,4 @@ install -D tailwindcss postcss autoprefixer ( pnpm install -D tailwindcss postcs
 17 - pnpm i @tanstack/react-query
 18 - carregando pnpm dlx shadcn-ui@latest add skeleton
 19 - pnpm i date-fns
+20 - pnpm dlx shadcn-ui@latest add calendar popover popover https://ui.shadcn.com/docs/components/date-picker

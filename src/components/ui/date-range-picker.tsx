@@ -1,6 +1,7 @@
 'use client'
 
 import { addDays, format, subDays } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import * as React from 'react'
 import { DateRange } from 'react-day-picker'
@@ -72,6 +73,7 @@ export function DateRangePicker({
             onSelect={onDateChange}
             numberOfMonths={2}
             disabled={disabledDays}
+            locale={ptBR}
           />
         </PopoverContent>
       </Popover>

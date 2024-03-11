@@ -13,6 +13,7 @@ import {
 import colors from 'tailwindcss/colors'
 
 import { getDailyRevenueInPeriod } from '@/api/get-daily-revenue-in-period'
+import { Loading } from '@/components/loading'
 import {
   Card,
   CardContent,
@@ -39,7 +40,10 @@ export function RevenueChart() {
     to: new Date(),
   })
 
-  const { data: dailyRevenueInPeriodFn } = useQuery({
+  const {
+    data: dailyRevenueInPeriodFn,
+    isLoading: isDailyRevenueInPeriodLoading,
+  } = useQuery({
     queryKey: ['metrics', 'daily-revenue-in-period', dateRange],
     queryFn: () =>
       getDailyRevenueInPeriod({
@@ -73,33 +77,42 @@ export function RevenueChart() {
         </div>
       </CardHeader>
       <CardContent>
-        {chartData && (
-          <ResponsiveContainer width="100%" height={240}>
-            <LineChart data={chartData} style={{ fontSize: 12 }}>
-              <XAxis dataKey="date" tickLine={false} axisLine={false} dy={16} />
+        {isDailyRevenueInPeriodLoading ? (
+          <Loading size="16" />
+        ) : (
+          chartData && (
+            <ResponsiveContainer width="100%" height={240}>
+              <LineChart data={chartData} style={{ fontSize: 12 }}>
+                <XAxis
+                  dataKey="date"
+                  tickLine={false}
+                  axisLine={false}
+                  dy={16}
+                />
 
-              <YAxis
-                stroke="#888"
-                axisLine={false}
-                tickLine={false}
-                width={80}
-                tickFormatter={(value: number) =>
-                  value.toLocaleString('pt-br', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })
-                }
-              />
+                <YAxis
+                  stroke="#888"
+                  axisLine={false}
+                  tickLine={false}
+                  width={80}
+                  tickFormatter={(value: number) =>
+                    value.toLocaleString('pt-br', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })
+                  }
+                />
 
-              <CartesianGrid vertical={false} className="stroke-muted" />
-              <Line
-                type="linear"
-                strokeWidth={2}
-                dataKey="receipt"
-                stroke={colors.violet[500]}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+                <CartesianGrid vertical={false} className="stroke-muted" />
+                <Line
+                  type="linear"
+                  strokeWidth={2}
+                  dataKey="receipt"
+                  stroke={colors.violet[500]}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          )
         )}
       </CardContent>
     </Card>

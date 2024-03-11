@@ -4,7 +4,6 @@ import { useSearchParams } from 'react-router-dom'
 import { z } from 'zod'
 
 import { getOrders } from '@/api/get-orders'
-import { Loading } from '@/components/loading'
 import { Pagination } from '@/components/pagination'
 import {
   Table,
@@ -16,6 +15,7 @@ import {
 
 import { OrderTableFilters } from './order-table-filters'
 import { OrderTableRow } from './order-table-row'
+import { OrderTableSkeleton } from './order-table-skeleton'
 
 export function Orders() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -57,30 +57,27 @@ export function Orders() {
         <div className="space-y-2.5">
           <OrderTableFilters />
           <div className="rounded-md border">
-            {isOrdersLoading ? (
-              <Loading size="20" />
-            ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[64px]"></TableHead>
-                    <TableHead className="w-[140px]">Identificador</TableHead>
-                    <TableHead className="w-[180px]">Realizado há</TableHead>
-                    <TableHead className="w-[140px]">Status</TableHead>
-                    <TableHead>Cliente</TableHead>
-                    <TableHead className="w-[140px]">Total do pedido</TableHead>
-                    <TableHead className="w-[164px]"></TableHead>
-                    <TableHead className="w-[132px]"></TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {result &&
-                    result.orders.map((order) => {
-                      return <OrderTableRow key={order.orderId} order={order} />
-                    })}
-                </TableBody>
-              </Table>
-            )}
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[64px]"></TableHead>
+                  <TableHead className="w-[140px]">Identificador</TableHead>
+                  <TableHead className="w-[180px]">Realizado há</TableHead>
+                  <TableHead className="w-[140px]">Status</TableHead>
+                  <TableHead>Cliente</TableHead>
+                  <TableHead className="w-[140px]">Total do pedido</TableHead>
+                  <TableHead className="w-[164px]"></TableHead>
+                  <TableHead className="w-[132px]"></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {isOrdersLoading && <OrderTableSkeleton />}
+                {result &&
+                  result.orders.map((order) => {
+                    return <OrderTableRow key={order.orderId} order={order} />
+                  })}
+              </TableBody>
+            </Table>
           </div>
 
           {result && (

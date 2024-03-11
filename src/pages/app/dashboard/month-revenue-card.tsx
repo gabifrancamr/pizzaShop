@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { DollarSign } from 'lucide-react'
 
 import { getMonthRevenue } from '@/api/get-month-revenue'
-import { Loading } from '@/components/loading'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function MonthRevenueCard() {
   const { data: monthRevenue, isLoading: isMonthRevenueLoading } = useQuery({
@@ -21,7 +22,7 @@ export function MonthRevenueCard() {
       </CardHeader>
       <CardContent className="space-y-1">
         {isMonthRevenueLoading ? (
-          <Loading size="16" />
+          <MetricCardSkeleton />
         ) : (
           monthRevenue && (
             <>

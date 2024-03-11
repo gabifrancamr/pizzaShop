@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { Utensils } from 'lucide-react'
 
 import { getDayOrdersAmount } from '@/api/get-day-orders-amount'
-import { Loading } from '@/components/loading'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { MetricCardSkeleton } from './metric-card-skeleton'
 
 export function DayOrdersAmountCard() {
   const { data: dayOrdersAmount, isLoading: isDayOrdersAmountLoading } =
@@ -20,7 +21,7 @@ export function DayOrdersAmountCard() {
       </CardHeader>
       <CardContent className="space-y-1">
         {isDayOrdersAmountLoading ? (
-          <Loading size="16" />
+          <MetricCardSkeleton />
         ) : (
           dayOrdersAmount && (
             <>

@@ -1,30 +1,14 @@
-# React + TypeScript + Vite
+# Pizza Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Para rodar o projeto é necessário: 
+1.baixar e rodar API: https://github.com/gabifrancamr/api-pizzashop
+2.usar email de login: gabidev@gmail.com
 
-Currently, two official plugins are available:
+Aplicação de gerenciamento de uma pizzaria (dashboard de administrador) utilizando Vite, Tailwind, React Router DOM, React Hook Form, shadcn/ui, React Query, Sonner, Axios, Zod. Esse projeto tem como foco exercitar tanto os conceitos do React, quanto a comunicação com APIs via requisições HTTP.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://github.com/gabifrancamr/pizzaShop/assets/95250838/76544816-5f4b-4e6f-89c0-0a33e8110870
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

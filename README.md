@@ -1,3 +1,3 @@
-# React + TypeScript + Vite
+# Pizza Shop
 
-Necessário usar API: https://github.com/rocketseat-education/pizzashop-api
+## Necessário baixar e usar API: https://github.com/rocketseat-education/pizzashop-api
